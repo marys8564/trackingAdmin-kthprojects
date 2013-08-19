@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <managed-bean>
+    <managed-bean-name>loginManager</managed-bean-name>
+    <managed-bean-class>view.LoginManager</managed-bean-class>
+    <managed-bean-scope>conversation</managed-bean-scope>
+</managed-bean>
+    <navigation-rule>
+        <from-view-id>/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginManager.loginAccount}</from-action>
+            <if>#{loginManager.admin}</if>
+            <to-view-id>/adminPage.xhtml</to-view-id>                    
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/adminPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>logout</from-outcome>
+            <to-view-id>/login.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>

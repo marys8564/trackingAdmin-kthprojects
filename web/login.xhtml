@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Tracking System</title>
+    </h:head>
+    <h:body>
+        <h:form>
+        <b>Login</b><br/>
+        <h:outputLabel value="Username: "></h:outputLabel><br/>
+        <h:inputText id="username" value="#{loginManager.username}"></h:inputText><br/>
+        <h:outputLabel value="Password: "></h:outputLabel><br/>
+        <h:inputSecret id="password" value="#{loginManager.password}"></h:inputSecret><br/>
+        <h:commandButton id="login" value="Login" action="#{loginManager.loginAccount}"></h:commandButton>
+          <h3 style="color: red">
+                <h:outputText value="" rendered="" />
+            </h3>
+        </h:form>
+    </h:body>
+</html>
+
+
+

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Tracking System</title>
+        <h:outputStylesheet library="css" name="table-style.css" />    
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <table>
+                <tr>
+                    <td>
+                        <h:commandLink value="Add Employee" 
+                                       action="#{adminManager.addEmployeeTab}"/>
+                    </td>
+                    <td>
+                        <h:commandLink value="Employee List" 
+                                       action="#{adminManager.employeeListTab}"/>
+                    </td>
+                    <td>
+                        <h:commandLink value="Task List" 
+                                       action="#{adminManager.taskListTab}"/>
+                    </td>
+                    <td>
+                        <h:commandLink value="Log out" 
+                                       action="#{adminManager.logout}" />
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+        <h:form rendered="#{adminManager.addEmployee}">
+            <br/>
+            <h:outputLabel value="Name "></h:outputLabel><br/>
+            <h:inputText id="name" value="#{adminManager.name}"></h:inputText><br/>
+            <h:outputLabel value="Username "></h:outputLabel><br/>
+            <h:inputText id="username" value="#{adminManager.username}"></h:inputText><br/>
+            <h:outputLabel value="Password: "></h:outputLabel><br/>
+            <h:inputSecret id="password" value="#{adminManager.password}"></h:inputSecret><br/>
+            <h:outputLabel value="Job Title"></h:outputLabel><br/>
+            <h:inputText id="job" value="#{adminManager.jobTitle}"></h:inputText><br/>
+            <h:outputLabel value="Device ID "></h:outputLabel><br/>
+            <h:inputText id="deviceId" value="#{adminManager.deviceId}"></h:inputText><br/>
+            <h:commandButton id="addEmployee" value="add" action="#{adminManager.addEmployee}"></h:commandButton>
+        </h:form>
+
+        <h:form rendered="#{adminManager.employeeList}">
+            <h:dataTable value="#{adminManager.userList}" var="users"
+                         styleClass="order-table"
+                         headerClass="order-table-header"
+                         rowClasses="order-table-odd-row,order-table-even-row">
+
+                <h:column>
+
+                    <!-- column header -->
+
+                    <f:facet name="header">Name</f:facet>
+                    <!-- row record -->
+                    #{users.name}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Username</f:facet>
+                    #{users.username}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Job Title</f:facet>
+                    #{users.jobTitle}
+                </h:column>
+                  <h:column>
+                    <f:facet name="header">Action</f:facet>
+                   <h:commandButton value="add Agenda" 
+                                     action="#{adminManager.addAgenda(users)}" />
+                </h:column>
+            </h:dataTable>
+            <table>
+                <tr>
+                    <td>
+                         <h:outputLabel value="Agenda: "></h:outputLabel><br/>
+        
+                    </td>
+                    <td>
+                        <h:inputTextarea value="#{adminManager.agenda}"></h:inputTextarea><br/>
+                    </td>
+                    </tr>
+            </table>
+        </h:form>
+        
+        <h:form rendered="#{adminManager.taskList}">
+            <h:dataTable value="#{adminManager.tasksList}" var="tasks"
+                         styleClass="order-table"
+                         headerClass="order-table-header"
+                         rowClasses="order-table-odd-row,order-table-even-row">
+
+                <h:column>
+
+                    <!-- column header -->
+
+                    <f:facet name="header">username</f:facet>
+                    <!-- row record -->
+                    #{tasks.username}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Status</f:facet>
+                    #{tasks.status}
+                </h:column>
+                  <h:column>
+                    <f:facet name="header">Agenda</f:facet>
+                    #{tasks.agenda}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Date</f:facet>
+                    #{tasks.dateTime}
+                </h:column>
+            </h:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>
+
